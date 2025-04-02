@@ -25,13 +25,10 @@ import {
   ChevronLeft,
   LayoutDashboard,
   Bell,
-  Lock,
-  Globe,
-  Mail,
-  Database,
-  Shield,
   Check,
-  AlertCircle,
+  Globe,
+  Shield,
+  Database,
 } from "lucide-react"
 import Link from "next/link"
 import { AnimatePresence, motion } from "framer-motion"

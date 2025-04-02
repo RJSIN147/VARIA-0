@@ -23,16 +23,11 @@ import {
   User,
   ChevronLeft,
   LayoutDashboard,
-  Mail,
-  Phone,
-  MapPin,
   Briefcase,
-  Calendar,
   Award,
   Activity,
   Check,
   Camera,
-  Upload,
 } from "lucide-react"
 import Link from "next/link"
 import { AnimatePresence, motion } from "framer-motion"
