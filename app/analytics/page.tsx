@@ -39,30 +39,9 @@ import {
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 
-interface InboxItem {
-  id: number;
-  type: "recording" | "chat";
-  title: string;
-  date: string;
-  content?: string;
-}
-
-// Mock data for call recordings and chats
-const mockData: InboxItem[] = [
-  { id: 1, type: "recording", title: "Call with John Doe", date: "2023-06-01" },
-  { id: 2, type: "chat", title: "Chat with Jane Smith", date: "2023-06-02" },
-];
-
 export default function InboxPage() {
-  const [selectedItem, setSelectedItem] = useState<InboxItem | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [selectedType, setSelectedType] = useState<string>("all");
   const [selectedTab, setSelectedTab] = useState("overview");
-
-  const filteredData =
-    selectedType === "all"
-      ? mockData
-      : mockData.filter((item) => item.type === selectedType);
 
   return (
     <SidebarProvider>
