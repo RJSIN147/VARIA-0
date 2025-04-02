@@ -1,23 +1,29 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Image from "next/image"
-import Link from "next/link"
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Clock, Mic, Globe, ArrowLeft, Phone, Calendar } from "lucide-react"
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Clock, Mic, Globe, ArrowLeft, Calendar } from "lucide-react";
 
 interface FeatureSectionProps {
-  icon: React.ElementType
-  title: string
-  description: string
-  imageSrc: string
-  children?: React.ReactNode
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  imageSrc: string;
+  children?: React.ReactNode;
 }
 
-const FeatureSection = ({ icon: Icon, title, description, imageSrc, children }: FeatureSectionProps) => (
+const FeatureSection = ({
+  icon: Icon,
+  title,
+  description,
+  imageSrc,
+  children,
+}: FeatureSectionProps) => (
   <motion.section
     initial={{ opacity: 0, y: 50 }}
     animate={{ opacity: 1, y: 0 }}
@@ -50,94 +56,17 @@ const FeatureSection = ({ icon: Icon, title, description, imageSrc, children }: 
       </div>
     </div>
   </motion.section>
-)
-
-const DemoCallForm = () => {
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [phone, setPhone] = useState("")
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    // Here you would typically send this data to your backend
-    console.log("Demo call requested:", { name, email, phone })
-    alert("Thank you for requesting a demo call. We'll be in touch soon!")
-  }
-
-  return (
-    <form onSubmit={handleSubmit} className="mt-6 space-y-4">
-      <div>
-        <Label htmlFor="name">Name</Label>
-        <Input
-          id="name"
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-          className="bg-gray-700 text-white"
-        />
-      </div>
-      <div>
-        <Label htmlFor="email">Email</Label>
-        <Input
-          id="email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          className="bg-gray-700 text-white"
-        />
-      </div>
-      <div>
-        <Label htmlFor="phone">Phone</Label>
-        <Input
-          id="phone"
-          type="tel"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          required
-          className="bg-gray-700 text-white"
-        />
-      </div>
-      <Button type="submit" className="w-full">
-        Request Demo Call
-      </Button>
-    </form>
-  )
-}
-
-const CallSchedulingTemplate = () => (
-  <div className="mt-6 bg-gray-800 p-6 rounded-lg">
-    <h3 className="text-xl font-semibold mb-4">Sample Call Schedule</h3>
-    <ul className="space-y-2">
-      <li className="flex justify-between items-center">
-        <span>9:00 AM</span>
-        <span>Product Introduction Call</span>
-      </li>
-      <li className="flex justify-between items-center">
-        <span>11:00 AM</span>
-        <span>Follow-up with Lead</span>
-      </li>
-      <li className="flex justify-between items-center">
-        <span>2:00 PM</span>
-        <span>Demo for Potential Client</span>
-      </li>
-      <li className="flex justify-between items-center">
-        <span>4:00 PM</span>
-        <span>Closing Call with Prospect</span>
-      </li>
-    </ul>
-  </div>
-)
+);
 
 export default function FeaturesPage() {
-  const [mounted, setMounted] = useState(false)
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
-  if (!mounted) return null
+  if (!mounted) return null;
+  
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black text-white">
@@ -156,7 +85,9 @@ export default function FeaturesPage() {
       <main>
         <section className="py-20">
           <div className="container mx-auto px-6">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-center">Our Features</h1>
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-center">
+              Our Features
+            </h1>
             <p className="text-xl md:text-2xl mb-8 text-gray-300 text-center">
               Discover how VoiceSalesBot can revolutionize your sales process
             </p>
@@ -214,25 +145,44 @@ export default function FeaturesPage() {
               <div>
                 <Label htmlFor="time">Preferred Time Slot</Label>
                 <div className="grid grid-cols-2 gap-2">
-                  <Button variant="outline" size="sm" className="justify-between">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="justify-between"
+                  >
                     <span>9:00 AM</span>
                     <span className="text-cyan-400">Available</span>
                   </Button>
-                  <Button variant="outline" size="sm" className="justify-between">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="justify-between"
+                  >
                     <span>11:00 AM</span>
                     <span className="text-cyan-400">Available</span>
                   </Button>
-                  <Button variant="outline" size="sm" className="justify-between">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="justify-between"
+                  >
                     <span>2:00 PM</span>
                     <span className="text-cyan-400">Available</span>
                   </Button>
-                  <Button variant="outline" size="sm" className="justify-between">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="justify-between"
+                  >
                     <span>4:00 PM</span>
                     <span className="text-cyan-400">Available</span>
                   </Button>
                 </div>
               </div>
-              <Button type="submit" className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600">
+              <Button
+                type="submit"
+                className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600"
+              >
                 Schedule Demo
               </Button>
             </form>
@@ -250,16 +200,27 @@ export default function FeaturesPage() {
               >
                 VoiceSalesBot
               </Link>
-              <p className="mt-2 text-gray-400">&copy; 2023 VoiceSalesBot. All rights reserved.</p>
+              <p className="mt-2 text-gray-400">
+                &copy; 2023 VoiceSalesBot. All rights reserved.
+              </p>
             </div>
             <div className="flex space-x-6">
-              <Link href="/privacy" className="text-gray-400 hover:text-white transition-colors">
+              <Link
+                href="/privacy"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
                 Privacy Policy
               </Link>
-              <Link href="/terms" className="text-gray-400 hover:text-white transition-colors">
+              <Link
+                href="/terms"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
                 Terms of Service
               </Link>
-              <Link href="/contact" className="text-gray-400 hover:text-white transition-colors">
+              <Link
+                href="/contact"
+                className="text-gray-400 hover:text-white transition-colors"
+              >
                 Contact Us
               </Link>
             </div>
@@ -267,6 +228,5 @@ export default function FeaturesPage() {
         </div>
       </footer>
     </div>
-  )
+  );
 }
-
