@@ -1,6 +1,6 @@
 "use client"
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Badge, badgeVariants } from "@/components/ui/badge"
 import { CheckCircle, Clock, PhoneOff, XCircle } from "lucide-react"
 import { CallStatus } from "@/types/call"
@@ -32,14 +32,41 @@ function getIconForStatus(status: CallStatus) {
   }
 }
 
+function getInitials(name: string) {
+  return name
+    .split(' ')
+    .map(word => word[0])
+    .join('')
+    .toUpperCase()
+    .slice(0, 2)
+}
+
+function getAvatarColor(name: string) {
+  const colors = [
+    'bg-blue-100 text-blue-700',
+    'bg-green-100 text-green-700',
+    'bg-purple-100 text-purple-700',
+    'bg-pink-100 text-pink-700',
+    'bg-yellow-100 text-yellow-700',
+    'bg-red-100 text-red-700',
+    'bg-indigo-100 text-indigo-700',
+    'bg-teal-100 text-teal-700',
+  ]
+  
+  // Use the name to consistently select a color
+  const index = name.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) % colors.length
+  return colors[index]
+}
+
 export function RecentCalls() {
   return (
     <div className="space-y-8">
       {recentCalls.map((call) => (
         <div key={call.id} className="flex items-center">
-          <Avatar className="h-9 w-9">
-            <AvatarImage src={call.avatar} alt={`${call.name}'s avatar`} />
-            <AvatarFallback>{call.name.charAt(0)}</AvatarFallback>
+          <Avatar className={`h-9 w-9 ${getAvatarColor(call.name)}`}>
+            <AvatarFallback className="bg-transparent">
+              {getInitials(call.name)}
+            </AvatarFallback>
           </Avatar>
           <div className="ml-4 space-y-1">
             <p className="text-sm font-medium leading-none">{call.name}</p>
