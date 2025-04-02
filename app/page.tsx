@@ -5,7 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { Clock, Mic, Globe, ChevronDown, Phone, Calendar } from "lucide-react"
+import { Clock, Mic, Globe, Phone, Calendar } from "lucide-react"
 
 interface FeatureCardProps {
   icon: React.ElementType
@@ -59,19 +59,13 @@ const Section = ({ children, className = "", id = "" }: SectionProps) => (
 
 export default function Home() {
   const [mounted, setMounted] = useState(false)
+  const [imageError, setImageError] = useState(false)
   const { scrollYProgress } = useScroll()
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
 
   useEffect(() => {
     setMounted(true)
   }, [])
-
-  const scrollToFeature = (featureId: string) => {
-    const element = document.getElementById(featureId)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    }
-  }
 
   if (!mounted) return null
 
@@ -101,7 +95,7 @@ export default function Home() {
           <motion.div
             className="absolute inset-0 z-0"
             style={{
-              backgroundImage: "url('/assets/hero-background.jpg')",
+              backgroundImage: imageError ? "none" : "url('/assets/hero-background.jpg')",
               backgroundSize: "cover",
               backgroundPosition: "center",
               y: backgroundY,
@@ -197,7 +191,7 @@ export default function Home() {
               <FeatureCard
                 icon={Calendar}
                 title="Flexible Call Scheduling"
-                description="Optimize your sales team's time with intelligent call scheduling."
+                description="Optimize your sales team&apos;s time with intelligent call scheduling."
                 id="call-scheduling"
               />
             </div>
@@ -232,6 +226,7 @@ export default function Home() {
                     width={700}
                     height={300}
                     className="rounded-lg shadow-lg"
+                    onError={() => setImageError(true)}
                   />
                 </motion.div>
               </div>
@@ -246,7 +241,7 @@ export default function Home() {
                 <h2 className="text-3xl md:text-4xl font-bold mb-4">Natural Voice Interaction</h2>
                 <p className="text-gray-300 mb-4">
                   Our advanced AI technology provides a natural, human-like conversation experience. Customers will feel
-                  like they're talking to a real person, enhancing engagement and trust.
+                  like they&apos;re talking to a real person, enhancing engagement and trust.
                 </p>
                 <Button
                   variant="outline"
@@ -315,7 +310,7 @@ export default function Home() {
               <div className="md:w-1/2 mb-8 md:mb-0 md:pl-8">
                 <h2 className="text-3xl md:text-4xl font-bold mb-4">Flexible Call Scheduling</h2>
                 <p className="text-gray-300 mb-4">
-                  Optimize your sales team's time with our intelligent call scheduling system. Automate follow-ups and
+                  Optimize your sales team&apos;s time with our intelligent call scheduling system. Automate follow-ups and
                   ensure no opportunity slips through the cracks.
                 </p>
                 <Button
